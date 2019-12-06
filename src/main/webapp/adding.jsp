@@ -4,17 +4,12 @@
     <title></title>
 </head>
 <body>
-<form action="${pageContext.servletContext.contextPath}/adding" method="POST">
-    <ul>
-        <li>
-            <label>Username: <input type="text" name="login"></label>
-        </li>
-        <li>
-            <label>Password: <input type="text" name="password"></label>
-        </li>
-        <li><input type="submit" align="center" value="Submit"/></li>
-    </ul>
-
-</form>
+<div align="center">
+    <form action="${pageContext.servletContext.contextPath}/adding" method="POST">
+            <label>Username: <input type="text" name="login"><br></label>
+            <label>Password: <input type="text" name="password"><br></label>
+            <input type="submit" align="center" value="Submit"/>
+    </form>
+</div>
 </body>
 </html>

@@ -10,23 +10,20 @@
     <h2>
         <a href="${pageContext.request.contextPath}/adding">Adding</a>
 
-</html>  </h2>
+ </h2>
 </center>
 <div align="center">
     <table border="1" cellpadding="5">
         <tr>
-            <th>Id</th>
             <th>Login</th>
             <th>Password</th>
         </tr>
         <c:forEach items="${users}" var="user">
             <tr>
-                <td>${user.id}</td>
                 <td>${user.login}</td>
                 <td>${user.password}</td>
                 <td>
                     <a href="${pageContext.servletContext.contextPath}/edit?id=${user.id}">Edit</a>
-                    &nbsp;&nbsp;&nbsp;&nbsp;
                     <a href="${pageContext.servletContext.contextPath}/delete?id=${user.id}">Delete</a>
                 </td>
             </tr>
@@ -34,3 +31,4 @@
     </table>
 </div>
 </body>
+</html>

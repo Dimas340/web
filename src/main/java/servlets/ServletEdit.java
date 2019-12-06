@@ -1,5 +1,10 @@
 package servlets;
 
+import model.User;
+import servise.Service;
+import servise.ServiceImpl;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,11 +14,23 @@ import java.io.IOException;
 
 @WebServlet("/edit")
 public class ServletEdit extends HttpServlet {
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    Service service = new ServiceImpl();
 
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        long id = Long.parseLong(request.getParameter("id"));
+        String login = request.getParameter("login");
+        String password = request.getParameter("password");
+        service.editUser(new User(id, login, password));
+        response.sendRedirect("get");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        long id = Long.parseLong(request.getParameter("id"));
+        User user = service.returnById(id);
+        request.setAttribute("user", user);
+        response.setContentType("text/html");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/edit.jsp");
+        dispatcher.forward(request, response);
 
     }
 }

@@ -19,8 +19,8 @@ public class ServletAddingAUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        service.addingUser(new User( login, password));
-        response.sendRedirect("/index.jsp");
+        service.addingUser(new User(login, password));
+        response.sendRedirect("get");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

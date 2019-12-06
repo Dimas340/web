@@ -36,12 +36,12 @@ public class Executor {
         }
     }
 
-    public <T> T executeQuery(String query, ExecutorHelper<T> helper) {
+    public <T> T executeQuery(String query, Help<T> help) {
         T user = null;
         try {
             Statement statement = connection.createStatement();
             ResultSet resultSet = statement.executeQuery(query);
-            user = helper.help(resultSet);
+            user = help.help(resultSet);
             connection.setAutoCommit(false);
             resultSet.close();
 
