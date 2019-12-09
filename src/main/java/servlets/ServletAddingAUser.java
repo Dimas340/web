@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.sql.SQLException;
 
 @WebServlet("/adding")
 public class ServletAddingAUser extends HttpServlet {
@@ -19,7 +20,11 @@ public class ServletAddingAUser extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        service.addingUser(new User(login, password));
+        try {
+            service.addingUser(new User(login, password));
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         response.sendRedirect("get");
     }
 
