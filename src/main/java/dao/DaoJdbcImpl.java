@@ -121,18 +121,13 @@ public class DaoJdbcImpl implements Dao {
     }
 
     @Override
-    public void deleteUser(long id) {
-        String command = "DELETE FROM crud WHERE id='" + id + "'";
+    public void deleteUser(User user) {
+        String command = "DELETE FROM crud WHERE id='" + user.getId() + "'";
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(command);
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void deleteUser(User user) {
-
     }
 }
 

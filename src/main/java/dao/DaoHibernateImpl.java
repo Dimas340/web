@@ -100,9 +100,4 @@ public class DaoHibernateImpl implements Dao {
             session.close();
         }
     }
-
-    @Override
-    public void deleteUser(long id) {
-
-    }
 }

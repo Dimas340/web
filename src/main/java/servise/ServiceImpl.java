@@ -1,16 +1,20 @@
 package servise;
 
+import dao.ReadFromFile;
 import dao.Dao;
-import dao.DaoHibernateImpl;
-import dao.DaoJdbcImpl;
 import model.User;
 
 import java.util.List;
 
 public class ServiceImpl implements Service {
 //    private Dao dao = new DaoJdbcImpl();
-    private Dao dao = DaoHibernateImpl.getInstance();
+//    private Dao dao = DaoHibernateImpl.getInstance();
+    private final Dao dao;
 
+    public ServiceImpl() {
+        dao = new ReadFromFile().getDao();
+
+    }
     @Override
     public List<User> getAllUsers(){
         return dao.getAllUsers();

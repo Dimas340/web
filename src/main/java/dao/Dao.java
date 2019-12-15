@@ -15,7 +15,5 @@ public interface Dao {
 
     void editUser(User user);
 
-    void deleteUser(long id);
-
     void deleteUser(User user);
 }
