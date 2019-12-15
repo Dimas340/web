@@ -20,12 +20,15 @@ public class ServletEdit extends HttpServlet {
         long id = Long.parseLong(request.getParameter("id"));
         String login = request.getParameter("login");
         String password = request.getParameter("password");
+        request.setCharacterEncoding("UTF8");
         service.editUser(new User(id, login, password));
         response.sendRedirect("get");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Long.parseLong(request.getParameter("id"));
+        request.setCharacterEncoding("UTF8");
+
         User user = service.returnById(id);
         request.setAttribute("user", user);
         response.setContentType("text/html");

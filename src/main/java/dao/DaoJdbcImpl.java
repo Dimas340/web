@@ -10,9 +10,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DaoImpl implements Dao {
-//    private DbConn dbConn = new DbConn();
-    private Connection connection = DbConn.getConnection();
+public class DaoJdbcImpl implements Dao {
+    private Connection connection;
+    private static DaoJdbcImpl instance;
+
+    public DaoJdbcImpl() {
+        connection = DbConn.getConnection();
+    }
+
+    public static DaoJdbcImpl getInstance() {
+        if (instance == null) {
+            instance = new DaoJdbcImpl();
+        }
+        return instance;
+    }
 
 //    @Override
 //    public List<User> getAllUsers() {
@@ -117,6 +128,11 @@ public class DaoImpl implements Dao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void deleteUser(User user) {
+
     }
 }
 

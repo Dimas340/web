@@ -18,13 +18,10 @@ public class ServletAddingAUser extends HttpServlet {
     Service service = new ServiceImpl();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF8");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        try {
-            service.addingUser(new User(login, password));
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
+        service.addingUser(new User(login, password));
         response.sendRedirect("get");
     }
 

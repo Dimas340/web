@@ -20,12 +20,8 @@ public class ServletGet extends HttpServlet {
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<User> users = null;
-        try {
-            users = service.getAllUsers();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-
+        users = service.getAllUsers();
+        request.setCharacterEncoding("UTF8");
         request.setAttribute("users", users);
 
         response.setContentType("text/html");

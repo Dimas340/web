@@ -1,22 +1,23 @@
 package servise;
 
 import dao.Dao;
-import dao.DaoImpl;
+import dao.DaoHibernateImpl;
+import dao.DaoJdbcImpl;
 import model.User;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public class ServiceImpl implements Service {
-    private Dao dao = new DaoImpl();
+//    private Dao dao = new DaoJdbcImpl();
+    private Dao dao = DaoHibernateImpl.getInstance();
 
     @Override
-    public List<User> getAllUsers() throws SQLException {
+    public List<User> getAllUsers(){
         return dao.getAllUsers();
     }
 
     @Override
-    public void addingUser(User user) throws SQLException {
+    public void addingUser(User user){
         dao.addingUser(user);
     }
 
@@ -31,7 +32,7 @@ public class ServiceImpl implements Service {
     }
 
     @Override
-    public void deleteUser(long id) {
-        dao.deleteUser(id);
+    public void deleteUser(User user) {
+        dao.deleteUser(user);
     }
 }

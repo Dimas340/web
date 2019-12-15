@@ -7,13 +7,15 @@ import java.util.List;
 
 public interface Dao {
 
-    List<User> getAllUsers() throws SQLException;
+    List<User> getAllUsers();
 
-    void addingUser(User user) throws SQLException;
+    void addingUser(User user);
 
     User returnById(long id);
 
     void editUser(User user);
 
     void deleteUser(long id);
+
+    void deleteUser(User user);
 }

@@ -7,13 +7,13 @@ import java.util.List;
 import java.util.Optional;
 
 public interface Service {
-    List<User> getAllUsers() throws SQLException;
+    List<User> getAllUsers();
 
-    void addingUser(User user) throws SQLException;
+    void addingUser(User user);
 
     User returnById(long id);
 
     void editUser(User user);
 
-    void deleteUser(long id);
+    void deleteUser(User user);
 }

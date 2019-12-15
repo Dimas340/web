@@ -1,9 +1,20 @@
 package model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "crud")
 public class User {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
+    @Column(name = "login")
     private String login;
+    @Column(name = "password")
     private String password;
+
+    public User() {}
 
     public User(String login, String password) {
         this.login = login;

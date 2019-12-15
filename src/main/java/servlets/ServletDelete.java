@@ -16,8 +16,12 @@ public class ServletDelete extends HttpServlet {
     Service service = new ServiceImpl();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setCharacterEncoding("UTF8");
         long id = Long.parseLong(request.getParameter("id"));
-        service.deleteUser(id);
+        User user = service.returnById(id);
+        if (user != null) {
+            service.deleteUser(user);
+        }
         response.sendRedirect("get");
     }
 }
