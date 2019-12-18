@@ -8,13 +8,11 @@ public class ReadFromFile {
     private Dao dao;
 
     public ReadFromFile() {
-        String conn = "nameConnection";
-
         String result = null;
         Properties properties = new Properties();
-        try(InputStream input = getClass().getClassLoader().getResourceAsStream("propertyConnection.properties")){
+        try (InputStream input = getClass().getClassLoader().getResourceAsStream("propertyConnection.properties")) {
             properties.load(input);
-            result = properties.getProperty(conn);
+            result = properties.getProperty("nameConnection");
         } catch (IOException e) {
             e.printStackTrace();
         }

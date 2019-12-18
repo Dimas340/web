@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/edit")
+@WebServlet("/admin/edit")
 public class ServletEdit extends HttpServlet {
     Service service = new ServiceImpl();
 
@@ -22,7 +22,7 @@ public class ServletEdit extends HttpServlet {
         String password = request.getParameter("password");
         request.setCharacterEncoding("UTF8");
         service.editUser(new User(id, login, password));
-        response.sendRedirect("get");
+        response.sendRedirect("admin");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
