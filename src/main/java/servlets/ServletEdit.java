@@ -14,7 +14,7 @@ import java.io.IOException;
 
 @WebServlet("/edit")
 public class ServletEdit extends HttpServlet {
-    Service service = new ServiceImpl();
+    Service service = ServiceImpl.getInstance();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         long id = Long.parseLong(request.getParameter("id"));

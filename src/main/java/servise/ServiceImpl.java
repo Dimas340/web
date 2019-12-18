@@ -1,27 +1,40 @@
 package servise;
 
-import dao.ReadFromFile;
+import dao.Factory;
 import dao.Dao;
+import dao.SpecificFactory;
 import model.User;
 
 import java.util.List;
 
 public class ServiceImpl implements Service {
-//    private Dao dao = new DaoJdbcImpl();
-//    private Dao dao = DaoHibernateImpl.getInstance();
-    private final Dao dao;
+    private static Dao dao;
+    private static ServiceImpl instance;
 
-    public ServiceImpl() {
-        dao = new ReadFromFile().getDao();
-
+    private ServiceImpl() {
+        Factory factory = new Factory();
+        factory.choice();
+        dao = new SpecificFactory().getDao();
     }
+
+    public static ServiceImpl getInstance() {
+        if (instance == null) {
+            synchronized (ServiceImpl.class) {
+                if (instance == null) {
+                    instance = new ServiceImpl();
+                }
+            }
+        }
+        return instance;
+    }
+
     @Override
-    public List<User> getAllUsers(){
+    public List<User> getAllUsers() {
         return dao.getAllUsers();
     }
 
     @Override
-    public void addingUser(User user){
+    public void addingUser(User user) {
         dao.addingUser(user);
     }
 

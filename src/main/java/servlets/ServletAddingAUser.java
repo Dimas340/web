@@ -15,7 +15,7 @@ import java.sql.SQLException;
 
 @WebServlet("/adding")
 public class ServletAddingAUser extends HttpServlet {
-    Service service = new ServiceImpl();
+    Service service = ServiceImpl.getInstance();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF8");

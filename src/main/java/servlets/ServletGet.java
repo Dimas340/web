@@ -16,11 +16,11 @@ import java.util.List;
 
 @WebServlet("/get")
 public class ServletGet extends HttpServlet {
-    Service service = new ServiceImpl();
+    Service service = ServiceImpl.getInstance();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<User> users = null;
-        users = service.getAllUsers();
+        List<User> users = service.getAllUsers();
+
         request.setCharacterEncoding("UTF8");
         request.setAttribute("users", users);
 

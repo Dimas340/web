@@ -7,21 +7,15 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
+import java.sql.Connection;
 import java.util.List;
 
-public class DaoHibernateImpl implements Dao {
+public class DaoHibernateImpl implements Dao{
     private SessionFactory sessionFactory;
-    private static DaoHibernateImpl instance;
 
     public DaoHibernateImpl() {
-        sessionFactory = DbConn.getMySqlConfiguration();// сделать так чтобы config создавался один раз
-    }
-
-    public static DaoHibernateImpl getInstance() {
-        if (instance == null) {
-            instance = new DaoHibernateImpl();
-        }
-        return instance;
+        DbConn dbConn = DbConn.getInstance();
+        sessionFactory = dbConn.getMySqlConfiguration();
     }
 
     @Override

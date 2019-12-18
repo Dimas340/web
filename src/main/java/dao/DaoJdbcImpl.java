@@ -12,17 +12,10 @@ import java.util.List;
 
 public class DaoJdbcImpl implements Dao {
     private Connection connection;
-    private static DaoJdbcImpl instance;
 
     public DaoJdbcImpl() {
-        connection = DbConn.getConnection();
-    }
-
-    public static DaoJdbcImpl getInstance() {
-        if (instance == null) {
-            instance = new DaoJdbcImpl();
-        }
-        return instance;
+        DbConn dbConn = DbConn.getInstance();
+        connection = dbConn.getConnection();
     }
 
 //    @Override

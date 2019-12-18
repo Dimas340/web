@@ -13,6 +13,20 @@ import java.sql.SQLException;
 
 public class DbConn {
     private static Connection connection = getMysqlConnection();
+    private static DbConn instance;
+
+    public DbConn() { }
+
+    public static DbConn getInstance() {
+        if (instance == null) {
+            synchronized (DbConn.class) {
+                if (instance == null) {
+                    instance = new DbConn();
+                }
+            }
+        }
+        return instance;
+    }
 
     private static Connection getMysqlConnection() {
         String userName = "root";
