@@ -38,7 +38,7 @@ public class DaoHibernateImpl implements Dao{
     }
 
     @Override
-    public void addingUser(User user){
+    public void addingUser(User user) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         try {
@@ -93,5 +93,24 @@ public class DaoHibernateImpl implements Dao{
         } finally {
             session.close();
         }
+    }
+
+    @Override
+    public User returnByLogin(String login) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        User user = null;
+        try {
+            String hql = ("FROM User where login='" + login + "'");
+            Query query = session.createQuery(hql);
+            user = (User) query.uniqueResult();
+            System.out.println(user);
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        } finally {
+            session.close();
+        }
+        return user;
     }
 }

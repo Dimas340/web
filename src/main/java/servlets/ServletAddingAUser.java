@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
-@WebServlet("/adding")
+@WebServlet("/admin/adding")
 public class ServletAddingAUser extends HttpServlet {
     Service service = ServiceImpl.getInstance();
 
@@ -22,7 +22,7 @@ public class ServletAddingAUser extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
         service.addingUser(new User(login, password));
-        response.sendRedirect("get");
+        response.sendRedirect("admin");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

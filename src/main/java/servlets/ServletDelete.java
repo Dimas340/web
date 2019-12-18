@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/delete")
+@WebServlet("/admin/delete")
 public class ServletDelete extends HttpServlet {
     Service service = ServiceImpl.getInstance();
 
@@ -22,6 +22,6 @@ public class ServletDelete extends HttpServlet {
         if (user != null) {
             service.deleteUser(user);
         }
-        response.sendRedirect("get");
+        response.sendRedirect("admin");
     }
 }

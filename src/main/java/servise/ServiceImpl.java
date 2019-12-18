@@ -52,4 +52,9 @@ public class ServiceImpl implements Service {
     public void deleteUser(User user) {
         dao.deleteUser(user);
     }
+
+    @Override
+    public User returnByLogin(String login) {
+        return dao.returnByLogin(login);
+    }
 }

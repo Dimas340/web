@@ -16,4 +16,6 @@ public interface Dao {
     void editUser(User user);
 
     void deleteUser(User user);
+
+    User returnByLogin(String login);
 }

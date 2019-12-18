@@ -44,7 +44,7 @@ public class DaoJdbcImpl implements Dao {
 //        return executorImpl.executeQuery("SELECT * FROM crud WHERE id='" + id + "'", result -> {
 //            result.next();
 //            return new User(
-//                    result.getLong(1),
+//                result.getLong(1),
 //                    result.getString(2),
 //                    result.getString(3)
 //            );
@@ -121,6 +121,21 @@ public class DaoJdbcImpl implements Dao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public User returnByLogin(String login) {
+        String command = "SELECT * FROM crud WHERE login='" + login + "'";
+        User user = null;
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(command);
+            while (resultSet.next()) {
+                return new User(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
 
