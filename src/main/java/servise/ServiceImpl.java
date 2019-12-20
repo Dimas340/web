@@ -1,8 +1,7 @@
 package servise;
 
-import dao.Factory;
 import dao.Dao;
-import dao.SpecificFactory;
+import dao.fabrics.Factory;
 import model.User;
 
 import java.util.List;
@@ -12,9 +11,9 @@ public class ServiceImpl implements Service {
     private static ServiceImpl instance;
 
     private ServiceImpl() {
-        Factory factory = new Factory();
-        factory.choice();
-        dao = new SpecificFactory().getDao();
+        Factory factory = Factory.choice();
+        dao = factory.createDao();
+
     }
 
     public static ServiceImpl getInstance() {

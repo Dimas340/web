@@ -14,8 +14,8 @@ public class DaoHibernateImpl implements Dao{
     private SessionFactory sessionFactory;
 
     public DaoHibernateImpl() {
-        DbConn dbConn = DbConn.getInstance();
-        sessionFactory = dbConn.getMySqlConfiguration();
+        DbConn.getInstance();
+        sessionFactory = DbConn.getMySqlConfiguration();
     }
 
     @Override

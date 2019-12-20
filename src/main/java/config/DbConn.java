@@ -15,7 +15,7 @@ public class DbConn {
     private static Connection connection = getMysqlConnection();
     private static DbConn instance;
 
-    public DbConn() { }
+    private DbConn() { }
 
     public static DbConn getInstance() {
         if (instance == null) {

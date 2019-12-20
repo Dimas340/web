@@ -14,8 +14,8 @@ public class DaoJdbcImpl implements Dao {
     private Connection connection;
 
     public DaoJdbcImpl() {
-        DbConn dbConn = DbConn.getInstance();
-        connection = dbConn.getConnection();
+        DbConn.getInstance();
+        connection = DbConn.getConnection();
     }
 
 //    @Override
