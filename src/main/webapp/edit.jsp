@@ -9,6 +9,7 @@
         <input type="hidden" name="id" value="${user.id}">
         <label>Username: <input type="text" name="login" value="${user.login}"><br></label>
         <label>Password: <input type="text" name="password" value="${user.password}"><br></label>
+        <label>Role: <input type="text" name="role" value="${user.role}"><br></label>
         <input type="submit" align="center" value="Submit"/>
     </form>
 </div>

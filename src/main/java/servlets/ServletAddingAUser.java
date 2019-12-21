@@ -21,7 +21,8 @@ public class ServletAddingAUser extends HttpServlet {
         request.setCharacterEncoding("UTF8");
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        service.addingUser(new User(login, password));
+        String role = request.getParameter("role");
+        service.addingUser(new User(login, password, role));
         response.sendRedirect("get");
     }
 

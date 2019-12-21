@@ -20,8 +20,9 @@ public class ServletEdit extends HttpServlet {
         long id = Long.parseLong(request.getParameter("id"));
         String login = request.getParameter("login");
         String password = request.getParameter("password");
+        String role = request.getParameter("role");
         request.setCharacterEncoding("UTF8");
-        service.editUser(new User(id, login, password));
+        service.editUser(new User(id, login, password, role));
         response.sendRedirect("get");
     }
 

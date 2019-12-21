@@ -79,7 +79,8 @@ public class DaoJdbcImpl implements Dao {
 
     @Override
     public void addingUser(User user) {
-        String command = "insert into crud (login, password) values ('" + user.getLogin() + "', '" + user.getPassword() + "')";
+        String command = "insert into crud (login, password, role) VALUES ('" + user.getLogin() +
+                "', '" + user.getPassword() + "', '"+ user.getRole() + "')";
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(command);
         } catch (SQLException e) {
@@ -104,8 +105,8 @@ public class DaoJdbcImpl implements Dao {
 
     @Override
     public void editUser(User user) {
-        String command = "UPDATE crud SET login='" + user.getLogin() + "', password='" + user.getPassword()
-                + "' WHERE id='" + user.getId() + "'";
+        String command = "update crud SET login='" + user.getLogin() + "', password='" + user.getPassword()
+                + "', role='" + user.getRole() + "' where id='" + user.getId() + "'";
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(command);
         } catch (SQLException e) {
