@@ -10,31 +10,42 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.Optional;
 
-@WebServlet("/admin/edit")
-public class ServletEdit extends HttpServlet {
+@WebServlet("/autification")
+public class ServletAutification extends HttpServlet {
     Service service = ServiceImpl.getInstance();
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        long id = Long.parseLong(request.getParameter("id"));
         String login = request.getParameter("login");
         String password = request.getParameter("password");
-        String role = request.getParameter("role");
-        request.setCharacterEncoding("UTF8");
-        service.editUser(new User(id, login, password, role));
-        response.sendRedirect("/admin");
+
+        User user = service.getUserLogin(login);
+        if (user == null) {
+            response.sendRedirect("autification");
+            return;
+        }
+
+        if (user.getPassword().equals(password)) {
+            HttpSession session = request.getSession();
+            session.setAttribute("user", user);
+            response.setContentType("text/html");
+            if (user.getRole().equals("admin")) {
+                response.sendRedirect("/admin");
+                return;
+            }
+            response.sendRedirect("/user");
+        } else {
+            response.sendRedirect("autification");
+        }
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        long id = Long.parseLong(request.getParameter("id"));
-        request.setCharacterEncoding("UTF8");
-
-        User user = service.returnById(id);
-        request.setAttribute("user", user);
         response.setContentType("text/html");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/edit.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
         dispatcher.forward(request, response);
-
     }
 }

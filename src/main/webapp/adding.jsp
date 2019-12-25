@@ -5,7 +5,7 @@
 </head>
 <body>
 <div align="center">
-    <form action="${pageContext.servletContext.contextPath}/adding" method="POST">
+    <form action="${pageContext.servletContext.contextPath}/admin/adding" method="POST">
             <label>Username: <input type="text" name="login"><br></label>
             <label>Password: <input type="text" name="password"><br></label>
             <label>Role: <input type="text" name="role"><br></label>

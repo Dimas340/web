@@ -94,4 +94,21 @@ public class DaoHibernateImpl implements Dao{
             session.close();
         }
     }
+
+    @Override
+    public User getUserLogin(String login) {
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+        User user = null;
+        try {
+            String hql = ("FROM User where login='" + login + "'");
+            Query query = session.createQuery(hql);
+            user = (User) query.uniqueResult();
+            transaction.commit();
+        } catch (Exception e) {
+            transaction.rollback();
+        } finally {
+            session.close();
+        }
+        return user;    }
 }

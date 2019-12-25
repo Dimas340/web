@@ -14,7 +14,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/get")
+@WebServlet("/admin")
 public class ServletGet extends HttpServlet {
     Service service = ServiceImpl.getInstance();
 
@@ -25,7 +25,7 @@ public class ServletGet extends HttpServlet {
         request.setAttribute("users", users);
 
         response.setContentType("text/html");
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin.jsp");
         dispatcher.forward(request, response);
     }
 }

@@ -80,7 +80,7 @@ public class DaoJdbcImpl implements Dao {
     @Override
     public void addingUser(User user) {
         String command = "insert into crud (login, password, role) VALUES ('" + user.getLogin() +
-                "', '" + user.getPassword() + "', '"+ user.getRole() + "')";
+                "', '" + user.getPassword() + "', '" + user.getRole() + "')";
         try (Statement statement = connection.createStatement()) {
             statement.executeUpdate(command);
         } catch (SQLException e) {
@@ -95,7 +95,7 @@ public class DaoJdbcImpl implements Dao {
         try (Statement statement = connection.createStatement()) {
             ResultSet resultSet = statement.executeQuery(command);
             while (resultSet.next()) {
-                return new User(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3));
+                return new User(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3));//нет роли
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -122,6 +122,21 @@ public class DaoJdbcImpl implements Dao {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public User getUserLogin(String login) {
+        String command = "SELECT * FROM crud WHERE login='" + login + "'";
+        User user = null;
+        try (Statement statement = connection.createStatement()) {
+            ResultSet resultSet = statement.executeQuery(command);
+            while (resultSet.next()) {
+                return new User(resultSet.getLong(1), resultSet.getString(2), resultSet.getString(3), resultSet.getString(4));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
 
