@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-@WebFilter(urlPatterns={"/admin/*"})
+//@WebFilter(urlPatterns={"/admin/*"})
 public class FilterAdmin implements Filter {
     public void destroy() {
     }
@@ -19,7 +19,7 @@ public class FilterAdmin implements Filter {
 
         User user = (User) session.getAttribute("user");
 
-        if (user != null && user.getRole().equals("admin")) {
+        if (user.getRole().equals("admin")) {
             filterChain.doFilter(request, response);
             return;
         }

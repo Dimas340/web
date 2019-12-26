@@ -12,7 +12,6 @@ import java.io.IOException;
 @WebServlet("/user")
 public class ServletUser extends HttpServlet {
 
-
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         HttpSession session = request.getSession();
