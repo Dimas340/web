@@ -9,27 +9,24 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
-//@WebFilter(urlPatterns={"/admin/*"})
+//@WebFilter(urlPatterns={"/*"})
 public class FilterAdmin implements Filter {
+
     public void destroy() {
     }
 
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        HttpSession session = ((HttpServletRequest)request).getSession();
+        HttpSession session = ((HttpServletRequest) request).getSession();
 
         User user = (User) session.getAttribute("user");
 
-        if (user.getRole().equals("admin")) {
+        if ("admin".equals(user.getRole())) {
             filterChain.doFilter(request, response);
-            return;
+        } else {
+            ((HttpServletResponse) response).sendRedirect("/user.jsp");
         }
-
-        ((HttpServletResponse) response).sendRedirect("/error.jsp");
     }
 
-
-    public void init(FilterConfig config) throws ServletException {
-
+    public void init(FilterConfig filterConfig) throws ServletException {
     }
-
 }

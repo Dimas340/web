@@ -8,7 +8,7 @@
 <center>
     <h1>Welcome our website</h1>
     <h2>
-        <a href="${pageContext.request.contextPath}/admin/adding">Adding</a>
+        <a href="${pageContext.request.contextPath}/app/admin/adding">Adding</a>
 
  </h2>
 </center>
@@ -23,8 +23,8 @@
                 <td>${user.login}</td>
                 <td>${user.password}</td>
                 <td>
-                    <a href="${pageContext.servletContext.contextPath}/admin/edit?id=${user.id}">Edit</a>
-                    <a href="${pageContext.servletContext.contextPath}/admin/delete?id=${user.id}">Delete</a>
+                    <a href="${pageContext.servletContext.contextPath}/app/admin/edit?id=${user.id}">Edit</a>
+                    <a href="${pageContext.servletContext.contextPath}/app/admin/delete?id=${user.id}">Delete</a>
                 </td>
             </tr>
         </c:forEach>

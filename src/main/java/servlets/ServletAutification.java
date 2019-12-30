@@ -14,7 +14,8 @@ import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Optional;
 
-@WebServlet("/autification")
+@WebServlet("/autification")//@WebServlet("/app/admin")
+
 public class ServletAutification extends HttpServlet {
     Service service = ServiceImpl.getInstance();
 
@@ -33,10 +34,10 @@ public class ServletAutification extends HttpServlet {
             session.setAttribute("user", user);
             response.setContentType("text/html");
             if (user.getRole().equals("admin")) {
-                response.sendRedirect("/admin");
+                response.sendRedirect("/app/admin");
                 return;
             }
-            response.sendRedirect("/user");
+            response.sendRedirect("/app/user");
         } else {
             response.sendRedirect("autification");
         }

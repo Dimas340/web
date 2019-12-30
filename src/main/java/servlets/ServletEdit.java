@@ -12,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet("/admin/edit")
+@WebServlet("/app/admin/edit")
 public class ServletEdit extends HttpServlet {
     Service service = ServiceImpl.getInstance();
 
@@ -23,7 +23,7 @@ public class ServletEdit extends HttpServlet {
         String role = request.getParameter("role");
         request.setCharacterEncoding("UTF8");
         service.editUser(new User(id, login, password, role));
-        response.sendRedirect("/admin");
+        response.sendRedirect("/app/admin");
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

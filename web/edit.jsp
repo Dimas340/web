@@ -5,7 +5,7 @@
 </head>
 <body>
 <div align="center">
-    <form action="${pageContext.servletContext.contextPath}/admin/edit" method="POST">
+    <form action="${pageContext.servletContext.contextPath}/app/admin/edit" method="POST">
         <input type="hidden" name="id" value="${user.id}">
         <label>Username: <input type="text" name="login" value="${user.login}"><br></label>
         <label>Password: <input type="text" name="password" value="${user.password}"><br></label>
